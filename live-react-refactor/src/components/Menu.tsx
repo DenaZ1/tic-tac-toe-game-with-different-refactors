@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import "./Menu.css";
 
 type Props = {
-    onAction(action: "reset" | "newRound"): void;
+    onAction(action: "reset" | "new-round"): void;
 };
 
 export default function Menu({ onAction}: Props) {
@@ -25,7 +25,7 @@ export default function Menu({ onAction}: Props) {
        {menuOpen && (
       <div className="items border">
         <button onClick={() => onAction("reset")}>Reset</button>
-        <button onClick={() => onAction("newRound")}>New Round</button>
+        <button onClick={() => onAction("new-round")}>New Round</button>
       </div>
       )} 
     </div>
