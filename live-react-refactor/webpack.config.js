@@ -2,22 +2,25 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.Node_ENV ?? 'development',
-  entry: './src/entrypoint.tsx',
+  entry: './src/entrypoint.jsx',
   module: {
     rules: [
       {
-        test: /.tsx?$/,
+        test: /.jsx?$/,
         exclude: /node_modules/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+                  presets: [
+                    "@babel/preset-env",
+                    ["@babel/preset-react", { runtime: "automatic" }],
+                  ],
+            },
+          },
+        ],
       },
-      {
-        test: /\.css$/,
-        use: ["style-loader","css-loader"],
-      }
     ],
-  },  
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
     path: path.resolve(__dirname, 'public'),
